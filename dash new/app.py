@@ -26,7 +26,14 @@ app.layout = html.Div(
 )
 
 from pages.dashboard import *
+#importe de precaução de callbacks para evitar erro de susteem do codigo por ser resumido nas pages
+from callback.dashboard_cb import *
+from callback.calendario_cb import *
+from callback.financas_cb import *
+from callback.diario_cb import *
+from callback.tarefas_cb import *
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+
