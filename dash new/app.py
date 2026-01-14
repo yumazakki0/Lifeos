@@ -1,6 +1,17 @@
 from dash import Dash, html
 import dash_bootstrap_components as dbc
 import dash
+from pages.dashboard import *
+from pages.calendario import * 
+from pages.financas import * 
+from pages.diario import *
+from pagegs.tarefas import *
+#importe de precaução de callbacks para evitar erro de susteem do codigo por ser resumido nas pages
+from callback.dashboard_cb import *
+from callback.calendario_cb import *
+from callback.financas_cb import *
+from callback.diario_cb import *
+from callback.tarefas_cb import *
 
 app = Dash(
     __name__,
@@ -25,15 +36,10 @@ app.layout = html.Div(
     ]
 )
 
-from pages.dashboard import *
-#importe de precaução de callbacks para evitar erro de susteem do codigo por ser resumido nas pages
-from callback.dashboard_cb import *
-from callback.calendario_cb import *
-from callback.financas_cb import *
-from callback.diario_cb import *
-from callback.tarefas_cb import *
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
 
