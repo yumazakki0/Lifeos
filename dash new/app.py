@@ -1,45 +1,39 @@
 from dash import Dash, html
-import dash_bootstrap_components as dbc
 import dash
-from pages.dashboard import *
-from pages.calendario import * 
-from pages.financas import * 
-from pages.diario import *
-from pagegs.tarefas import *
-#importe de precaução de callbacks para evitar erro de susteem do codigo por ser resumido nas pages
-from callback.dashboard_cb import *
-from callback.calendario_cb import *
-from callback.financas_cb import *
-from callback.diario_cb import *
-from callback.tarefas_cb import *
+import dash_bootstrap_components as dbc
+
+from componentes.sidebar import render_sidebar
+import pages.dashboard  # noqa: F401
+import pages.calendario  # noqa: F401
+import pages.financas  # noqa: F401
+import pages.diario  # noqa: F401
+import pages.tarefas  # noqa: F401
+
+import callbacks.dashboard_cb  # noqa: F401
+import callbacks.calendario_cb  # noqa: F401
+import callbacks.financas_cb  # noqa: F401
+import callbacks.diario_cb  # noqa: F401
+import callbacks.tarefas_cb  # noqa: F401
 
 app = Dash(
     __name__,
     use_pages=True,
     external_stylesheets=[dbc.themes.BOOTSTRAP],
-    suppress_callback_exceptions=True
+    suppress_callback_exceptions=True,
 )
 
 server = app.server
 
 app.layout = html.Div(
-    className="app-container",
+    className="app-container d-flex",
     children=[
-        # Sidebar fixa (entra depois)
-        html.Div(id="sidebar"),
-
-        # Conteúdo das páginas
+        render_sidebar(),
         html.Div(
-            className="content",
-            children=dash.page_container
-        )
-    ]
+            className="content flex-grow-1 p-4",
+            children=dash.page_container,
+        ),
+    ],
 )
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
